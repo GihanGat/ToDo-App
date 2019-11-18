@@ -27,7 +27,8 @@
         header {
             display: flex;
             flex-direction: row;
-            border-bottom: 0.1em solid lightgray;
+            /* border-bottom: 0.1em solid lightgray; */
+            border-bottom: 0.1em rgba(143, 143, 143, 0.4) solid;
             justify-content: center;
         }
 
@@ -45,14 +46,13 @@
             scroll-padding-bottom: 5em;
             display: grid;
             grid-template-columns: 1fr 2fr 1fr;
-            grid-template-rows: 10% 60% auto;
+            grid-template-rows: 10% 65% auto ;
             justify-items: center;
         }
 
         .todoform {
             grid-column: 2 / 3;
             grid-row: 2 / 3;
-            align-self: center;
         }
 
         #todo-add,
@@ -88,9 +88,10 @@
         }
 
         footer {
-            border-top: 0.01em rgba(143, 143, 143, 0.4) solid;
+            border-top: 0.1em rgba(143, 143, 143, 0.4) solid;
             display: flex;
             height: 10rem;
+            align-items: flex-start;
             justify-content: right;
         }
 
