@@ -31,7 +31,8 @@ function addNewToDoItem(event) {
 }
 
 function rmvBtnClick() {
-    
+    alert("Confirm to remove selected items");
+    /*
     const template = document.querySelector('#todo-item');
     var list = document.querySelector('#todo-list');
     //const item = document.importNode(template.content, true);
@@ -51,6 +52,11 @@ function rmvBtnClick() {
             list.removeChild(item);
         }
     }
+    */
+}
+
+function editBtnClick() {
+    alert("Confirm to edit selected items");
 }
 
 function getRandomNumber(lowNum, highNum) {
