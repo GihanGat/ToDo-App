@@ -31,6 +31,7 @@ function addNewToDoItem(event) {
 }
 
 function rmvBtnClick() {
+    
     const template = document.querySelector('#todo-item');
     var list = document.querySelector('#todo-list');
     //const item = document.importNode(template.content, true);

@@ -7,8 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>To-Do List</title>
     <style>
-        :root {
+        :root,
+        html {
             font-size: calc(1em + 4 * ((75vw - 200px) / (980 - 300)));
+            background-color: antiquewhite;
+            font-family: Georgia, 'Times New Roman', Times, serif;
         }
 
         #todo-add {
@@ -36,9 +39,12 @@
             /* background-color: #d5c9e2; */
             justify-content: center;
             border-bottom: 0.1em rgba(143, 143, 143, 0.4) solid;
+
         }
 
-        #todo-add, #todo-remove {
+        #todo-add,
+        #todo-remove,
+        #todo-edit {
             height: 1rem;
             width: 1rem;
         }
@@ -50,12 +56,11 @@
             padding-top: 1rem;
             display: flex;
             justify-content: center;
-            flex-basis:auto;
+            flex-basis: auto;
         }
 
         #todo-label {
             height: 1.5rem;
-            font-family: Georgia, 'Times New Roman', Times, serif;
             font-size: large;
         }
 
@@ -109,6 +114,8 @@
                 <input id="todo-add" type="image" src="img/add.svg" alt="Add a To Do">
                 <input id="todo-remove" name="todo-remove" type="image" src="img/remove.svg"
                     alt="Remove Selected To Do's" onclick="rmvBtnClick()">
+                <input id="todo-edit" name="todo-edit" type="image" src="img/edit.svg" alt="Edit Selected To Do's"
+                    onclick="editBtnClick()">
             </form>
             <form action="/" method="get">
                 <ul id="todo-list">
@@ -128,5 +135,4 @@
         <!-- <p>Copyright &copy;2019<p> -->
     </footer>
 </body>
-
 </html>
