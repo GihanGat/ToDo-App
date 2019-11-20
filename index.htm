@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +26,7 @@
             scroll-padding-bottom: 25%;
             display: grid;
             grid-template-columns: 1fr 90vw 1fr;
-            grid-template-rows: 0.5fr 4fr 1fr;
+            grid-template-rows: 0.5fr 3fr 1fr;
         }
 
         header {
@@ -39,7 +38,6 @@
             /* background-color: #d5c9e2; */
             justify-content: center;
             border-bottom: 0.1em rgba(143, 143, 143, 0.4) solid;
-
         }
 
         #todo-add,
@@ -101,7 +99,7 @@
     </style>
 </head>
 
-<body>
+<body onload=refreshFromLS()>
     <header>
         <h1>To Do Things</h1>
     </header>
@@ -123,7 +121,7 @@
         </div>
         <template id="todo-item">
             <li>
-                <input id="todo-select" type="checkbox" name="todo-select"
+                <input id="todo-select" type="checkbox" name="todo-select" onclick="updateLScontent(this)"
                     alt="Select todo for mark it complete or remove">
                 <label for="todo-select" alt="Entered to do item description"></label>
             </li>

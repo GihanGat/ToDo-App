@@ -2,8 +2,9 @@ function eventListner() {
     let addToDoBtn = document.querySelector('#todo-add');
     addToDoBtn.addEventListener('click', addNewToDoItem);
 
-   /*  let removeToDobtn = document.querySelector('#todo-remove');
-    removeToDobtn.addEventListener('click', removeToDo); */
+
+    /*  let removeToDobtn = document.querySelector('#todo-remove');
+     removeToDobtn.addEventListener('click', removeToDo); */
 }
 
 function addNewToDoItem(event) {
@@ -22,10 +23,16 @@ function addNewToDoItem(event) {
 
         input.setAttribute('id', todoID);
         label.setAttribute('for', todoID);
+        //input.setAttribute('checked',false);
 
         label.textContent = value;
 
         list.appendChild(item);
+
+        const ls = window.localStorage;
+        const saveItem = new XMLSerializer().serializeToString(document.getElementById(todoID).parentNode);
+        //console.log(saveItem);
+        ls.setItem(todoID, saveItem);
     }
     todo.value = '';
 }
@@ -62,6 +69,33 @@ function editBtnClick() {
 function getRandomNumber(lowNum, highNum) {
     var rnum = Math.floor(Math.random() * (highNum - lowNum + 1)) + lowNum;
     return rnum;
+}
+
+function updateLScontent(checkbox) {
+    if (document.getElementById(checkbox.id).checked == true) {
+        checkbox.setAttribute("checked", true)
+    } else {
+        //checkbox.setAttribute("checked",false)
+        checkbox.removeAttribute("checked")
+    }
+    // console.log(checkbox);
+    const itemString = new XMLSerializer().serializeToString(checkbox.parentNode);
+    //console.log(itemString);
+    window.localStorage.setItem(checkbox.id, itemString);
+}
+
+function refreshFromLS() {
+    const db = window.localStorage;
+    const list = document.querySelector('#todo-list');
+    Object.keys(db).forEach((listitem) => {
+        //console.log(listitem);
+        if (listitem.indexOf("todo-select") >= 0) {
+            const newListitem = db.getItem(listitem);
+            //console.log(newListitem);
+            const node = document.createRange().createContextualFragment(newListitem);
+            list.appendChild(node);
+        }
+    });
 }
 
 
