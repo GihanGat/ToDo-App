@@ -29,7 +29,8 @@ function addNewToDoItem(event) {
         dltButton.setAttribute('id', todoID);
         dltButton.setAttribute("onClick", "rmvBtnClick('"+ todoID +"',event);");
         editButton.setAttribute('id', todoID);
-
+        //label.parentElement.parentElement.setAttribute("class","new");
+        label.parentElement.classList.add('new');
         //input.setAttribute('checked',false);
 
         label.textContent = value;
@@ -46,7 +47,7 @@ function addNewToDoItem(event) {
 
 function rmvBtnClick(rmbtnID,event) {
     event.preventDefault();
-    alert("Confirm to remove selected items");
+    //alert("Confirm to remove selected items");
     //console.log(rmbtn);
     //alert("A ");
     //var item = document.getElementById(rmbtn.id);
