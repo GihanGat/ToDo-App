@@ -79,24 +79,26 @@
             height: 3rem;
         }
 
-        #todo-list{
+        #todo-list {
             display: inline-flex;
             flex-direction: column;
+            animation-duration: 2s;
+            animation-name: bounceIn;
         }
 
-        li{
-            display:flex;
+        li {
+            display: flex;
             flex-direction: row;
-            justify-content:space-between;
+            justify-content: space-between;
         }
 
-        #list_items{
+        #list_items {
             display: inline-flex;
             flex-direction: row;
             height: 1rem;
         }
 
-        #mod-btns{
+        #mod-btns {
             display: inline-flex;
             height: 1rem;
             width: 1rem;
@@ -115,6 +117,29 @@
             content: "© 2019 Copyright";
             font-size: 1em;
             position: absolute;
+        }
+
+        .new-item {
+            animation-name: fadeIn;
+            animation-duration: 3s;
+            animation-iteration-count: 1;
+        }
+
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.1);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
     </style>
 </head>
@@ -137,7 +162,7 @@
         </div>
         <template id="todo-item">
             <li>
-                <div id="list_items">
+                <div class="example example-three" id="list_items">
                     <input id="todo-select" type="checkbox" name="todo-select" onclick="updateLScontent(this)"
                         alt="Select todo's for mark it complete or remove">
                     <label for="todo-select" alt="Entered to do item description"></label>
@@ -145,8 +170,8 @@
                 <div id="mod-btns">
                     <input id="todo-remove" for="todo-select" name="todo-remove" type="image" src="img/remove.svg"
                         alt="Remove Selected To Do's" onclick="rmvBtnClick(this)">
-                    <input id="todo-edit" for="todo-select" name="todo-edit" type="image" src="img/edit.svg" alt="Edit Selected To Do's"
-                        onclick="editBtnClick(this)">
+                    <input id="todo-edit" for="todo-select" name="todo-edit" type="image" src="img/edit.svg"
+                        alt="Edit Selected To Do's" onclick="editBtnClick(this)">
                 </div>
             </li>
         </template>

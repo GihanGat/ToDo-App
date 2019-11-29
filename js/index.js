@@ -29,6 +29,7 @@ function addNewToDoItem(event) {
         dltButton.setAttribute('id', todoID);
         dltButton.setAttribute("onClick", "rmvBtnClick('"+ todoID +"',event);");
         editButton.setAttribute('id', todoID);
+
         //input.setAttribute('checked',false);
 
         label.textContent = value;
