@@ -12,7 +12,7 @@
             --root-font-size: calc(1rem + 4 * ((75vw - 200px) / (980 - 300)));
             --page-color: antiquewhite;
             --head-anim-color: #f53708;
-            font-family: Georgia, 'Times New Roman', Times, serif;
+            --page-font: Georgia, 'Times New Roman', Times, serif;
         }
 
         li {
@@ -26,6 +26,7 @@
             grid-template-columns: 1fr 90vw 1fr;
             grid-template-rows: 0.5fr 3fr 1fr;
             background-color: var(--page-color);
+            font-family: var(--page-font);
         }
 
         header {
