@@ -84,29 +84,34 @@
         }
 
         #todo-list {
-            display: inline-flex;
-            flex-direction: column;
             animation-duration: 2s;
             animation-name: bounceIn;
         }
 
         li {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 6fr 1fr;
         }
 
         #list_items {
-            display: inline-flex;
-            flex-direction: row;
+            grid-column: 1 / 2;
             height: 1rem;
         }
 
         #mod-btns {
-            display: inline-flex;
+            display:flex;
+            grid-column: 2 / 3; 
             height: 1rem;
             width: 1rem;
         }
+
+       /*   #todo-remove{
+            grid-column: 2 / 3; 
+        }
+        
+        #todo-edit{
+            grid-column: 3 / 4; 
+        }  */
 
         footer {
             grid-column: 1 / 4;
@@ -121,15 +126,6 @@
             content: "© 2019 Copyright";
             font-size: 1em;
             position: absolute;
-        }
-
-        #todo-remove {
-            transition: transform 0.3s ease;
-        }
-
-        .new {
-            animation-name: pulse;
-            transition: 1s bottom, 4s 1s left cubic-bezier(0,1,1,1);
         }
 
         @keyframes bounceIn {
@@ -150,17 +146,16 @@
 
         @keyframes pulse {
             0% {
-                color: #ee8019;
+                color: #f53708;
                 transform: scale(1);
             }
-
             25% {
-                color: darken(#ee8019, 10%);
-                transform: scale(1.5);
+                color: darken(#f53708, 10%);
+                transform: scale(1.015);
             }
 
             50% {
-                color: #ee8019;
+                color: #f53708;
                 transform: scale(1);
             }
         }
@@ -176,7 +171,7 @@
             <form action="/" method="get">
                 <label for="todo-label"><strong>Add a To-Do</strong></label>
                 <input id="todo-label" type="text" name="todo-label">
-                <input id="todo-add" type="image" src="img/add.svg" alt="Add a To Do">
+                <input id="todo-add" type="image" src="img/add.svg" alt="Add a To Do Item">
             </form>
             <form action="/" method="get">
                 <ul id="todo-list">
@@ -187,14 +182,14 @@
             <li>
                 <div class="example example-three" id="list_items">
                     <input id="todo-select" type="checkbox" name="todo-select" onclick="updateLScontent(this)"
-                        alt="Select todo's for mark it complete or remove">
+                        alt="Select todo's for mark it as completed">
                     <label for="todo-select" alt="Entered to do item description"></label>
                 </div>
                 <div id="mod-btns">
                     <input id="todo-remove" for="todo-select" name="todo-remove" type="image" src="img/remove.svg"
-                        alt="Remove Selected To Do's" onclick="rmvBtnClick(this)">
+                        alt="Remove a Selected To Do's" onclick="rmvBtnClick(this)">
                     <input id="todo-edit" for="todo-select" name="todo-edit" type="image" src="img/edit.svg"
-                        alt="Edit Selected To Do's" onclick="editBtnClick(this)">
+                        alt="Edit the selected To Do" onclick="editBtnClick(this)">
                 </div>
             </li>
         </template>
