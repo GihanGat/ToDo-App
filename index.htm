@@ -10,7 +10,8 @@
         :root,
         html {
             --root-font-size: calc(1rem + 4 * ((75vw - 200px) / (980 - 300)));
-            background-color: antiquewhite;
+            --page-color: antiquewhite;
+            --head-anim-color: #f53708;
             font-family: Georgia, 'Times New Roman', Times, serif;
         }
 
@@ -24,6 +25,7 @@
             display: grid;
             grid-template-columns: 1fr 90vw 1fr;
             grid-template-rows: 0.5fr 3fr 1fr;
+            background-color: var(--page-color);
         }
 
         header {
@@ -152,17 +154,17 @@
 
         @keyframes pulse {
             0% {
-                color: #f53708;
+                color: var(--head-anim-color);
                 transform: scale(1);
             }
 
             25% {
-                color: darken(#f53708, 10%);
+                color: darken( var(--head-anim-color), 10%);
                 transform: scale(1.015);
             }
 
             50% {
-                color: #f53708;
+                color: var(--head-anim-color);
                 transform: scale(1);
             }
         }
