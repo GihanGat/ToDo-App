@@ -9,7 +9,7 @@
     <style>
         :root,
         html {
-            font-size: calc(1em + 4 * ((75vw - 200px) / (980 - 300)));
+            --root-font-size: calc(1rem + 4 * ((75vw - 200px) / (980 - 300)));
             background-color: antiquewhite;
             font-family: Georgia, 'Times New Roman', Times, serif;
         }
@@ -46,7 +46,7 @@
             grid-column: 2/3;
             grid-row: 2/3;
             /* background-color: #d5c9e2; */
-            padding-top: 1rem;
+            padding-top: var(--root-font-size, 1rem);
             display: flex;
             flex-direction: row;
             justify-content: center;
@@ -54,8 +54,9 @@
         }
 
         #todo-label {
-            height: 1.5rem;
+            height: var(--root-font-size, 1.5rem);
             font-size: large;
+            width: 50%;
         }
 
         #list_items::after {
@@ -75,12 +76,12 @@
         }
 
         #todo-add {
-            height: 1rem;
-            width: 1rem;
+            height: var(--root-font-size, 1rem);
+            width: var(--root-font-size, 1rem);
         }
 
         template>* {
-            height: 3rem;
+            height: var(--root-font-size, 3rem);
         }
 
         #todo-list {
@@ -95,17 +96,18 @@
 
         #list_items {
             grid-column: 1 / 2;
-            height: 1rem;
+            height: var(--root-font-size, 1rem);
+            font-size:var(--root-font-size, 1rem);
         }
 
         #mod-btns {
-            display:flex;
-            grid-column: 2 / 3; 
-            height: 1rem;
-            width: 1rem;
+            display: flex;
+            grid-column: 2 / 3;
+            height: var(--root-font-size, 1rem);
+            width: var(--root-font-size, 1rem);
         }
 
-       /*   #todo-remove{
+        /*   #todo-remove{
             grid-column: 2 / 3; 
         }
         
@@ -128,6 +130,10 @@
             position: absolute;
         }
 
+/*         #todo-prompt:before {
+            content: "Add a To-Do";
+        } */
+
         @keyframes bounceIn {
             0% {
                 transform: scale(0.1);
@@ -149,6 +155,7 @@
                 color: #f53708;
                 transform: scale(1);
             }
+
             25% {
                 color: darken(#f53708, 10%);
                 transform: scale(1.015);
@@ -157,6 +164,35 @@
             50% {
                 color: #f53708;
                 transform: scale(1);
+            }
+        }
+
+        @media screen {
+            body {
+                padding-top: 2em;
+                display: grid;
+                grid-template-columns: 1fr 50vw 1fr;
+                grid-template-rows: 0.5fr 3fr 1fr;
+            }
+        }
+
+        @media screen {
+            #todo-label {
+                height: var(--root-font-size, 1rem);
+                font-size: medium;
+                width: 30%;
+            }
+        }
+
+        @media screen and (min-width: 481px) and (max-width: 2000px) {
+            #todo-prompt:before {
+                content: "Add a To-Do";
+            }
+        }
+
+        @media screen and (min-width: 320px) and (max-width: 480px) {
+            #todo-prompt:before {
+                content: "To Do";
             }
         }
     </style>
@@ -169,7 +205,7 @@
     <main>
         <div class="todoform">
             <form action="/" method="get">
-                <label for="todo-label"><strong>Add a To-Do</strong></label>
+                <label id="todo-prompt" for="todo-label"></label>
                 <input id="todo-label" type="text" name="todo-label">
                 <input id="todo-add" type="image" src="img/add.svg" alt="Add a To Do Item">
             </form>
