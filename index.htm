@@ -177,7 +177,7 @@
             margin: .5rem .5rem;
         }
 
-        .card:hover  {
+        .card:hover {
             transition: 1s;
             left: 0px;
         }
@@ -195,7 +195,7 @@
             background: #dda86c;
             transition: 1s;
             bottom: 0px;
-            left:-355px;
+            left: -355px;
         }
 
         .cardShow {
@@ -310,12 +310,12 @@
 </head>
 
 <body onload=refreshFromLS()>
-    <div class="card">
-        <div class="cardHide">
-            <h2>"Display network status"</h2>
-        </div>
-    </div>
     <header>
+        <div class="card">
+            <div class="cardHide">
+                <h2>"Display network status"</h2>
+            </div>
+        </div>
         <h1>To Do Things</h1>
     </header>
     <main>
@@ -325,15 +325,16 @@
                 <input id="todo-label" type="text" name="todo-label" title="Type new To Do">
                 <input id="todo-add" type="image" src="img/add.svg" title="Complete add new To Do" alt="Add the entered To Do item">
             </form>
-            <form action="/" method="get" name="showToDoitems">
-                <ul id="todo-list">
+            <form action="/" method="get" name="showToDoitems" title="To Do item list container"></form>
+                <ul id="todo-list" title="To Do item list">
                 </ul>
             </form>
         </div>
         <template id="todo-item">
             <li>
                 <div id="list_items">
-                    <input id="todo-select" type="checkbox" name="todo-select" onclick="updateLScontent(this)" title="To Do items list">
+                    <input id="todo-select" type="checkbox" name="todo-select" onclick="updateLScontent(this)"
+                        title="To Do items list">
                     <label for="todo-select" title="Select todo item"></label>
                 </div>
                 <div id="mod-btns">
