@@ -11,13 +11,49 @@
         html {
             --root-font-size: calc(1rem + 4 * ((75vw - 200px) / (980 - 300)));
             --page-color: antiquewhite;
-            --head-anim-color: #f53708;
+            --head-anim-color: #531705;
             --page-font: Georgia, 'Times New Roman', Times, serif;
         }
 
-        li {
+        /*         li {
             list-style-type: none;
+        } */
+
+        li {
+            list-style: none;
+            background: #f5cb42;
+            color: #551a05;
+            border: 1px solid green;
+            padding: 15px;
+            margin-top: 5px;
         }
+
+        li {
+            display: grid;
+            grid-template-columns: 6fr 1fr;
+        }
+
+        li.show {
+            height: 2em;
+            margin: 2px 0;
+        }
+
+        .fade li {
+            transition: all 0.4s ease-out;
+            opacity: 0;
+            height: 2em;
+        }
+
+        .fade li.show {
+            opacity: 1;
+        }
+
+        li.removed-item {
+            -webkit-animation: removed-item-animation .8s cubic-bezier(.65, -0.02, .72, .29);
+            -o-animation: removed-item-animation .8s cubic-bezier(.65, -0.02, .72, .29);
+            animation: removed-item-animation .8s cubic-bezier(.65, -0.02, .72, .29)
+        }
+
 
         body {
             padding-top: 2em;
@@ -27,6 +63,7 @@
             grid-template-rows: 0.5fr 3fr 1fr;
             background-color: var(--page-color);
             font-family: var(--page-font);
+            justify-content: center;
         }
 
         header {
@@ -53,7 +90,6 @@
             display: flex;
             flex-direction: row;
             justify-content: center;
-            flex-basis: auto;
         }
 
         #todo-label {
@@ -92,15 +128,10 @@
             animation-name: bounceIn;
         }
 
-        li {
-            display: grid;
-            grid-template-columns: 6fr 1fr;
-        }
-
         #list_items {
             grid-column: 1 / 2;
             height: var(--root-font-size, 1rem);
-            font-size:var(--root-font-size, 1rem);
+            font-size: var(--root-font-size, 1rem);
         }
 
         #mod-btns {
@@ -133,10 +164,47 @@
             position: absolute;
         }
 
-/*         #todo-prompt:before {
+        /*         #todo-prompt:before {
             content: "Add a To-Do";
         } */
 
+
+        h2,
+        p {
+            margin: .5rem .5rem;
+        }
+
+        .card:hover  {
+            transition: 1s;
+            left: 0px;
+        }
+
+        .card {
+            position: relative;
+            background-repeat: no-repeat;
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        .cardHide {
+            position: absolute;
+            color: rgb(100, 28, 6);
+            background: #dda86c;
+            transition: 1s;
+            bottom: 0px;
+            left:-355px;
+        }
+
+        .cardShow {
+            position: absolute;
+            color: rgb(100, 28, 6);
+            background: #dda86c;
+            transition: 1s;
+            bottom: 0px;
+            left: 0px;
+        }
+
+        /*Keyframes queries*/
         @keyframes bounceIn {
             0% {
                 transform: scale(0.1);
@@ -160,7 +228,7 @@
             }
 
             25% {
-                color: darken( var(--head-anim-color), 10%);
+                color: darken(var(--head-anim-color), 10%);
                 transform: scale(1.015);
             }
 
@@ -170,6 +238,41 @@
             }
         }
 
+        @keyframes removed-item-animation {
+            0% {
+                opacity: 1;
+                -webkit-transform: translateX(0);
+                -ms-transform: translateX(0);
+                -o-transform: translateX(0);
+                transform: translateX(0)
+            }
+
+            30% {
+                opacity: 1;
+                -webkit-transform: translateX(50px);
+                -ms-transform: translateX(50px);
+                -o-transform: translateX(50px);
+                transform: translateX(50px)
+            }
+
+            80% {
+                opacity: 1;
+                -webkit-transform: translateX(-800px);
+                -ms-transform: translateX(-800px);
+                -o-transform: translateX(-800px);
+                transform: translateX(-800px)
+            }
+
+            100% {
+                opacity: 0;
+                -webkit-transform: translateX(-800px);
+                -ms-transform: translateX(-800px);
+                -o-transform: translateX(-800px);
+                transform: translateX(-800px)
+            }
+        }
+
+        /*media queries*/
         @media screen {
             body {
                 padding-top: 2em;
@@ -179,7 +282,7 @@
             }
         }
 
-        @media screen {
+        @media screen and (min-width: 320px) and (max-width: 480px) {
             #todo-label {
                 height: var(--root-font-size, 1rem);
                 font-size: medium;
@@ -190,20 +293,25 @@
         @media screen and (min-width: 481px) and (max-width: 2000px) {
             #todo-prompt:before {
                 content: "Add a To-Do";
-                font-size:var(--root-font-size, 1.5rem);
+                font-size: var(--root-font-size, 1.5rem);
             }
         }
 
         @media screen and (min-width: 320px) and (max-width: 480px) {
             #todo-prompt:before {
                 content: "To Do";
-                font-size:var(--root-font-size, 1rem);
+                font-size: var(--root-font-size, 1rem);
             }
         }
     </style>
 </head>
 
 <body onload=refreshFromLS()>
+    <div class="card">
+        <div class="cardHide">
+            <h2></h2>
+        </div>
+    </div>
     <header>
         <h1>To Do Things</h1>
     </header>

@@ -2,9 +2,36 @@ function eventListner() {
     let addToDoBtn = document.querySelector('#todo-add');
     addToDoBtn.addEventListener('click', addNewToDoItem);
 
+    const statusBanner = document.querySelector('.cardHide');
+
+    window.addEventListener('offline', (event) => {
+        //let statusIndicator = document.querySelector('#status');
+        //statusIndicator.innerHTML = "Offline";
+        statusBanner.innerHTML = "You are Offline";
+        //statusBanner.setAttribute('id', 'card_status_anim');
+        statusBanner.setAttribute('class','cardShow');
+        //statusBanner.setAttribute('left','0px')
+        setTimeout(test, 3000);
+    });
+    
+    window.addEventListener('online', (event) => {
+        //let statusIndicator = document.querySelector('#status');
+        //console.log(statusIndicator);
+        //statusIndicator.innerHTML = "online";
+        statusBanner.innerHTML = "You are Online";
+        statusBanner.setAttribute('class','cardShow');
+        setTimeout(test, 3000);
+    });
+
 
     /*  let removeToDobtn = document.querySelector('#todo-remove');
      removeToDobtn.addEventListener('click', removeToDo); */
+}
+
+function test(){
+    const statusBanner = document.querySelector('.cardShow');
+    statusBanner.setAttribute('class','.cardHide');
+    statusBanner.innerHTML =" ";
 }
 
 function addNewToDoItem(event) {
@@ -41,53 +68,23 @@ function addNewToDoItem(event) {
         const saveItem = new XMLSerializer().serializeToString(document.getElementById(todoID).parentNode.parentNode);
         //console.log(saveItem);
         ls.setItem(todoID, saveItem);
+
+        setTimeout(function() {
+         //   newLI.className = newLI.className + " show";
+            ls.className = ls.className + " show";
+          }, 10);
     }
     todo.value = '';
 }
 
 function rmvBtnClick(rmbtnID,event) {
     event.preventDefault();
-    //alert("Confirm to remove selected items");
-    //console.log(rmbtn);
-    //alert("A ");
-    //var item = document.getElementById(rmbtn.id);
-    //console.log(item)
-   // item.parentelement.parentelement.removechild(item.queryselector("input"))
-
-   //var id = this.getAttribute('id');
    console.log(rmbtnID)
-  // alert("A");
-   document.getElementById(rmbtnID).parentElement.parentElement.remove();
-  // alert("B");
    window.localStorage.removeItem(rmbtnID);
-
-    //var listItem=rmbtn.parentNode;
-    //console.log(listitem)
-    //var ul=listItem.parentNode;
-    //Remove the parent list item from the ul.
-   //ul.removeChild(listItem);
-
-    /*
-    const template = document.querySelector('#todo-item');
-    var list = document.querySelector('#todo-list');
-    //const item = document.importNode(template.content, true);
-    var inputs = list.getElementsByTagName("input");
-
-    for (var i = 0, len = inputs.length; i < len; i++) {
-        if (inputs[i].checked) {
-            const item = document.importNode(template.content, true);
-            var input = item.getElementById(inputs[i].id);
-            input.setAttribute('id', inputs[i].id);
-            label.setAttribute('for', inputs[i].id);
-            // console.log(inputs[i]);
-            //console.log(list.childNodes[i]);
-            //console.log(item);
-
-            //alert(inputs[i].id);
-            list.removeChild(item);
-        }
-    }
-    */
+  // document.getElementById(rmbtnID).parentElement.addClass('removed-item')
+  // .one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+       document.getElementById(rmbtnID).parentElement.parentElement.remove();
+  //  });
 }
 
 function editBtnClick() {
@@ -125,6 +122,7 @@ function refreshFromLS() {
         }
     });
 }
+
 
 
 eventListner();
