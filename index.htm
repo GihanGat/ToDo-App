@@ -323,7 +323,7 @@
             <form action="/" method="get" name="getToDoitems" title="Add New To Do Items Form">
                 <label id="todo-prompt" for="todo-label" title="Add new To Do Prompt"></label>
                 <input id="todo-label" type="text" name="todo-label" title="Type new To Do">
-                <input id="todo-add" type="image" src="img/add.svg" title="Complete add new To Do">
+                <input id="todo-add" type="image" src="img/add.svg" title="Complete add new To Do" alt="Add the entered To Do item">
             </form>
             <form action="/" method="get" name="showToDoitems">
                 <ul id="todo-list">
@@ -332,9 +332,9 @@
         </div>
         <template id="todo-item">
             <li>
-                <div class="example example-three" id="list_items">
-                    <input id="todo-select" type="checkbox" name="todo-select" onclick="updateLScontent(this)">
-                    <label for="todo-select" ></label>
+                <div id="list_items">
+                    <input id="todo-select" type="checkbox" name="todo-select" onclick="updateLScontent(this)" title="To Do items list">
+                    <label for="todo-select" title="Select todo item"></label>
                 </div>
                 <div id="mod-btns">
                     <input id="todo-remove" for="todo-select" name="todo-remove" type="image" src="img/remove.svg"
