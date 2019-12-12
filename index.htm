@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Open Source web based  To Do App">
+    <meta name="keywords" content="ToDo,Project,WebDev,CSS,JavaScript">
+    <meta name="author" content="A00209188-Gihan Maduranga">
     <title>To-Do List</title>
     <style>
         :root,
@@ -320,7 +323,7 @@
             <form action="/" method="get" name="getToDoitems" title="Add New To Do Items Form">
                 <label id="todo-prompt" for="todo-label" title="Add new To Do Prompt"></label>
                 <input id="todo-label" type="text" name="todo-label" title="Type new To Do">
-                <input id="todo-add" type="image" src="img/add.svg" alt="Add a To Do Item" title="Complete add new To Do">
+                <input id="todo-add" type="image" src="img/add.svg" title="Complete add new To Do">
             </form>
             <form action="/" method="get" name="showToDoitems">
                 <ul id="todo-list">
@@ -330,13 +333,12 @@
         <template id="todo-item">
             <li>
                 <div class="example example-three" id="list_items">
-                    <input id="todo-select" type="checkbox" name="todo-select" onclick="updateLScontent(this)"
-                        alt="Select todo's for mark it as completed">
-                    <label for="todo-select" alt="Entered to do item description"></label>
+                    <input id="todo-select" type="checkbox" name="todo-select" onclick="updateLScontent(this)">
+                    <label for="todo-select" ></label>
                 </div>
                 <div id="mod-btns">
                     <input id="todo-remove" for="todo-select" name="todo-remove" type="image" src="img/remove.svg"
-                        alt="Remove a Selected To Do's" onclick="rmvBtnClick(this)" title="To Do item remove">
+                        alt="Remove a Selected To Do" onclick="rmvBtnClick(this)" title="To Do item remove">
                     <input id="todo-edit" for="todo-select" name="todo-edit" type="image" src="img/edit.svg"
                         alt="Edit the selected To Do" onclick="editBtnClick(this)" title="To Do item edit">
                 </div>
