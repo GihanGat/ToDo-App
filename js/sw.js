@@ -1,9 +1,8 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 workbox.precaching.precacheAndRoute([
-    '/index.html',
-    '/js/*.js',
-    '/js/sw.js',
+    '/index.htm',
+    '/js/index.js',
     '/img/add.svg',
     '/img/edit.svg',
     '/img/remove.svg'
