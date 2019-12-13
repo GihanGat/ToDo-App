@@ -2,36 +2,50 @@ function eventListner() {
     let addToDoBtn = document.querySelector('#todo-add');
     addToDoBtn.addEventListener('click', addNewToDoItem);
 
+    //if (document.querySelector('.showCard') == null){
+     //   const statusBanner = document.querySelector('.hideCard') 
+    //}else{
+     //   const statusBanner = document.querySelector('.showCard') 
+    //}
     const statusBanner = document.querySelector('.cardHide');
 
     window.addEventListener('offline', (event) => {
-        //let statusIndicator = document.querySelector('#status');
-        //statusIndicator.innerHTML = "Offline";
+        console.log('offline');
         statusBanner.innerHTML = "You are Offline";
-        //statusBanner.setAttribute('id', 'card_status_anim');
         statusBanner.setAttribute('class','cardShow');
-        //statusBanner.setAttribute('left','0px')
-        setTimeout(test, 3000);
+        console.log(statusBanner);
+        //statusBanner.classList.remove('cardHide');
+        //statusBanner.classList.add('cardShow');
+        setTimeout(slideOutStatusCard, 3000);
     });
     
     window.addEventListener('online', (event) => {
-        //let statusIndicator = document.querySelector('#status');
-        //console.log(statusIndicator);
-        //statusIndicator.innerHTML = "online";
+        console.log('online');
         statusBanner.innerHTML = "You are Online";
         statusBanner.setAttribute('class','cardShow');
-        setTimeout(test, 3000);
+        console.log(statusBanner);
+        //statusBanner.classList.remove('cardHide');
+        //statusBanner.classList.add('cardShow');
+        setTimeout(slideOutStatusCard, 3000);
+
     });
-
-
-    /*  let removeToDobtn = document.querySelector('#todo-remove');
-     removeToDobtn.addEventListener('click', removeToDo); */
 }
 
-function test(){
+function slideOutStatusCard(){
+/*     if (document.querySelector('.showCard') == null){
+        const statusBanner = document.querySelector('.cardHide') 
+        statusBanner.classList.toggle('cardShow');
+    }else{
+        const statusBanner = document.querySelector('.showCard') 
+        statusBanner.setAttribute('class','.cardHide');
+    } */
     const statusBanner = document.querySelector('.cardShow');
-    statusBanner.setAttribute('class','.cardHide');
+
+    //statusBanner.classList.remove('cardshow');
+    statusBanner.setAttribute('class','cardHide');
+    //statusBanner.classList.add('cardHide');
     statusBanner.innerHTML =" ";
+    console.log(statusBanner);
 }
 
 function addNewToDoItem(event) {
@@ -55,7 +69,9 @@ function addNewToDoItem(event) {
         label.setAttribute('for', todoID);
         dltButton.setAttribute('id', todoID);
         dltButton.setAttribute("onClick", "rmvBtnClick('"+ todoID +"',event);");
-        editButton.setAttribute('id', todoID);
+        editButton.setAttribute("onClick", "editBtnClick('"+ todoID +"',event);");
+        //editButton.setAttribute('id', todoID);
+
         //label.parentElement.parentElement.setAttribute("class","new");
         label.parentElement.classList.add('new');
         //input.setAttribute('checked',false);
@@ -79,16 +95,28 @@ function addNewToDoItem(event) {
 
 function rmvBtnClick(rmbtnID,event) {
     event.preventDefault();
-   console.log(rmbtnID)
-   window.localStorage.removeItem(rmbtnID);
-  // document.getElementById(rmbtnID).parentElement.addClass('removed-item')
-  // .one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
-       document.getElementById(rmbtnID).parentElement.parentElement.remove();
-  //  });
+    console.log(rmbtnID)
+    window.localStorage.removeItem(rmbtnID);
+    // document.getElementById(rmbtnID).parentElement.addClass('removed-item')
+    // .one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+    document.getElementById(rmbtnID).parentElement.parentElement.remove();
+    //  });
 }
 
-function editBtnClick() {
-    alert("Confirm to edit selected items");
+function editBtnClick(editbtnID,event) {
+    //alert("Confirm to edit selected items");
+    //console.log(editbtnID.id);
+    console.log(editbtnID);
+    //var listItem = this.parentNode;
+    const listitem = document.getElementById(editbtnID);
+    
+    const test = listitem.parentElement.parentElement.firstElementChild.innerText;
+   // listitem.parentElement.parentElement.firstElementChild.innerText = "";
+    console.log(listitem);
+    console.log(test);
+    document.getElementById(editbtnID).setAttribute('type','text');
+    document.getElementById(editbtnID).setAttribute('value',test);
+
 }
 
 function getRandomNumber(lowNum, highNum) {
@@ -122,7 +150,5 @@ function refreshFromLS() {
         }
     });
 }
-
-
 
 eventListner();

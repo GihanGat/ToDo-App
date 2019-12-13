@@ -52,11 +52,8 @@
         }
 
         li.removed-item {
-            -webkit-animation: removed-item-animation .8s cubic-bezier(.65, -0.02, .72, .29);
-            -o-animation: removed-item-animation .8s cubic-bezier(.65, -0.02, .72, .29);
             animation: removed-item-animation .8s cubic-bezier(.65, -0.02, .72, .29)
         }
-
 
         body {
             padding-top: 2em;
@@ -183,7 +180,7 @@
         }
 
         .card {
-            position: relative;
+
             background-repeat: no-repeat;
             background-size: cover;
             overflow: hidden;
@@ -194,8 +191,9 @@
             color: rgb(100, 28, 6);
             background: #dda86c;
             transition: 1s;
-            bottom: 0px;
-            left: -355px;
+            height: 3rem;
+            top: 0px;
+            left: -25%;
         }
 
         .cardShow {
@@ -203,116 +201,32 @@
             color: rgb(100, 28, 6);
             background: #dda86c;
             transition: 1s;
-            bottom: 0px;
-            left: 0px;
+            height: 3rem;
+            top: 0px;
+            left: 25%;
         }
 
-        /*Keyframes queries*/
-        @keyframes bounceIn {
-            0% {
-                transform: scale(0.1);
-                opacity: 0;
-            }
-
-            60% {
-                transform: scale(1.2);
-                opacity: 1;
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        @keyframes pulse {
-            0% {
-                color: var(--head-anim-color);
-                transform: scale(1);
-            }
-
-            25% {
-                color: darken(var(--head-anim-color), 10%);
-                transform: scale(1.015);
-            }
-
-            50% {
-                color: var(--head-anim-color);
-                transform: scale(1);
-            }
-        }
-
-        @keyframes removed-item-animation {
-            0% {
-                opacity: 1;
-                -webkit-transform: translateX(0);
-                -ms-transform: translateX(0);
-                -o-transform: translateX(0);
-                transform: translateX(0)
-            }
-
-            30% {
-                opacity: 1;
-                -webkit-transform: translateX(50px);
-                -ms-transform: translateX(50px);
-                -o-transform: translateX(50px);
-                transform: translateX(50px)
-            }
-
-            80% {
-                opacity: 1;
-                -webkit-transform: translateX(-800px);
-                -ms-transform: translateX(-800px);
-                -o-transform: translateX(-800px);
-                transform: translateX(-800px)
-            }
-
-            100% {
-                opacity: 0;
-                -webkit-transform: translateX(-800px);
-                -ms-transform: translateX(-800px);
-                -o-transform: translateX(-800px);
-                transform: translateX(-800px)
-            }
-        }
-
-        /*media queries*/
-        @media screen {
-            body {
-                padding-top: 2em;
-                display: grid;
-                grid-template-columns: 1fr 50vw 1fr;
-                grid-template-rows: 0.5fr 3fr 1fr;
-            }
-        }
-
-        @media screen and (min-width: 320px) and (max-width: 480px) {
-            #todo-label {
-                height: var(--root-font-size, 1rem);
-                font-size: medium;
-                width: 30%;
-            }
-        }
-
-        @media screen and (min-width: 481px) and (max-width: 2000px) {
-            #todo-prompt:before {
-                content: "Add a To-Do";
-                font-size: var(--root-font-size, 1.5rem);
-            }
-        }
-
-        @media screen and (min-width: 320px) and (max-width: 480px) {
-            #todo-prompt:before {
-                content: "To Do";
-                font-size: var(--root-font-size, 1rem);
-            }
-        }
+ 
     </style>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/js/sw.js').then(function (registration) {
+                    console.log('ServiceWorker registration successful');
+                }, function (err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
 </head>
 
 <body onload=refreshFromLS()>
     <header>
         <div class="card">
-            <div class="cardHide">
+            <div class='cardHide'>
                 <h2>"Display network status"</h2>
             </div>
         </div>
@@ -321,13 +235,14 @@
     <main>
         <div class="todoform">
             <form action="/" method="get" name="getToDoitems" title="Add New To Do Items Form">
-                <label id="todo-prompt" for="todo-label" title="Add new To Do Prompt">Add a To Do</label>
+                <label id="todo-prompt" for="todo-label" title="Add new To Do Prompt">:</label>
                 <input id="todo-label" type="text" name="todo-label" title="Type new To Do" spellcheck="true">
-                <input id="todo-add" type="image" src="img/add.svg" title="Complete add new To Do" alt="Add the entered To Do item">
+                <input id="todo-add" type="image" src="img/add.svg" title="Complete add new To Do"
+                    alt="Add the entered To Do item">
             </form>
             <form action="/" method="get" name="showToDoitems" title="To Do item list container"></form>
-                <ul id="todo-list" title="To Do item list">
-                </ul>
+            <ul id="todo-list" title="To Do item list">
+            </ul>
             </form>
         </div>
         <template id="todo-item">
@@ -335,7 +250,7 @@
                 <div id="list_items">
                     <input id="todo-select" type="checkbox" name="todo-select" onclick="updateLScontent(this)"
                         title="To Do items list">
-                    <label for="todo-select" title="Select todo item"></label>
+                    <label class="editMode" for="todo-select" title="Select todo item"></label>
                 </div>
                 <div id="mod-btns">
                     <input id="todo-remove" for="todo-select" name="todo-remove" type="image" src="img/remove.svg"
@@ -346,17 +261,6 @@
             </li>
         </template>
         <script src="js/index.js"></script>
-        <script>
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function () {
-                    navigator.serviceWorker.register('/js/sw.js').then(function (registration) {
-                        console.log('ServiceWorker registration successful');
-                    }, function (err) {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
-                });
-            }
-        </script>
     </main>
     <footer>
         <!-- <p>Copyright &copy;2019<p> -->
