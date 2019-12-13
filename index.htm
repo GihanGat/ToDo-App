@@ -205,6 +205,38 @@
             top: 0px;
             left: 25%;
         }
+
+            /*media queries*/
+    @media screen {
+        body {
+            padding-top: 2em;
+            display: grid;
+            grid-template-columns: 1fr 50vw 1fr;
+            grid-template-rows: 0.5fr 3fr 1fr;
+        }
+    }
+
+    @media screen and (min-width: 320px) and (max-width: 480px) {
+        #todo-label {
+            height: var(--root-font-size, 1rem);
+            font-size: medium;
+            width: 30%;
+        }
+    }
+
+    @media screen and (min-width: 481px) and (max-width: 2000px) {
+        #todo-prompt:before {
+            content: "Add a To-Do";
+            font-size: var(--root-font-size, 3rem) * 3;
+        }
+    }
+
+    @media screen and (min-width: 320px) and (max-width: 480px) {
+        #todo-prompt:before {
+            content: "To Do";
+            font-size: var(--root-font-size, 1rem);
+        }
+    }
     </style>
     <link rel="stylesheet" href="/css/style.css">
     <script>
