@@ -1,29 +1,19 @@
 function eventListner() {
     let addToDoBtn = document.querySelector('#todo-add');
     addToDoBtn.addEventListener('click', addNewToDoItem);
-
-    //if (document.querySelector('.showCard') == null){
-     //   const statusBanner = document.querySelector('.hideCard') 
-    //}else{
-     //   const statusBanner = document.querySelector('.showCard') 
-    //}
     const statusBanner = document.querySelector('.cardHide');
 
     window.addEventListener('offline', (event) => {
-        console.log('offline');
         statusBanner.innerHTML = "You are Offline";
         statusBanner.setAttribute('class','cardShow');
-        console.log(statusBanner);
         //statusBanner.classList.remove('cardHide');
         //statusBanner.classList.add('cardShow');
         setTimeout(slideOutStatusCard, 3000);
     });
     
     window.addEventListener('online', (event) => {
-        console.log('online');
         statusBanner.innerHTML = "You are Online";
         statusBanner.setAttribute('class','cardShow');
-        console.log(statusBanner);
         //statusBanner.classList.remove('cardHide');
         //statusBanner.classList.add('cardShow');
         setTimeout(slideOutStatusCard, 3000);
@@ -32,20 +22,12 @@ function eventListner() {
 }
 
 function slideOutStatusCard(){
-/*     if (document.querySelector('.showCard') == null){
-        const statusBanner = document.querySelector('.cardHide') 
-        statusBanner.classList.toggle('cardShow');
-    }else{
-        const statusBanner = document.querySelector('.showCard') 
-        statusBanner.setAttribute('class','.cardHide');
-    } */
     const statusBanner = document.querySelector('.cardShow');
-
     //statusBanner.classList.remove('cardshow');
     statusBanner.setAttribute('class','cardHide');
     //statusBanner.classList.add('cardHide');
     statusBanner.innerHTML =" ";
-    console.log(statusBanner);
+    //console.log(statusBanner);
 }
 
 function addNewToDoItem(event) {
@@ -95,7 +77,7 @@ function addNewToDoItem(event) {
 
 function rmvBtnClick(rmbtnID,event) {
     event.preventDefault();
-    console.log(rmbtnID)
+    //console.log(rmbtnID)
     window.localStorage.removeItem(rmbtnID);
     // document.getElementById(rmbtnID).parentElement.addClass('removed-item')
     // .one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
@@ -106,14 +88,11 @@ function rmvBtnClick(rmbtnID,event) {
 function editBtnClick(editbtnID,event) {
     //alert("Confirm to edit selected items");
     //console.log(editbtnID.id);
-    console.log(editbtnID);
     //var listItem = this.parentNode;
     const listitem = document.getElementById(editbtnID);
     
     const test = listitem.parentElement.parentElement.firstElementChild.innerText;
    // listitem.parentElement.parentElement.firstElementChild.innerText = "";
-    console.log(listitem);
-    console.log(test);
     document.getElementById(editbtnID).setAttribute('type','text');
     document.getElementById(editbtnID).setAttribute('value',test);
 
@@ -131,9 +110,8 @@ function updateLScontent(checkbox) {
         //checkbox.setAttribute("checked",false)
         checkbox.removeAttribute("checked")
     }
-    // console.log(checkbox);
+
     const itemString = new XMLSerializer().serializeToString(checkbox.parentNode.parentNode);
-    //console.log(itemString);
     window.localStorage.setItem(checkbox.id, itemString);
 }
 
