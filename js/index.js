@@ -80,7 +80,7 @@ function rmvBtnClick(rmbtnID,event) {
     //console.log(rmbtnID)
     window.localStorage.removeItem(rmbtnID);
     // document.getElementById(rmbtnID).parentElement.addClass('removed-item')
-    // .one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+    // .one('webkitAnimationEnd animationend', function(e) {
     document.getElementById(rmbtnID).parentElement.parentElement.remove();
     //  });
 }
